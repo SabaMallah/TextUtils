@@ -15,6 +15,9 @@ function App() {
       message: message,
       type: type,
     });
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500);
   };
 
   const toggleMode = () => {
@@ -39,7 +42,7 @@ function App() {
         toggleMode={toggleMode}
       />
       <Alert alert={alert} />
-      <TextForm title="Enter Text Here" mode={mode} />
+      <TextForm title="Enter Text Here" mode={mode} showAlert={showAlert} />
       {/* <About /> */}
     </>
   );

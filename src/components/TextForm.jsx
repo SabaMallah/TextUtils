@@ -7,11 +7,13 @@ export default function TextForm(props) {
     console.log("handleUpClick clicked");
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to Upper Case", "success");
   };
   const handleLowClick = () => {
     console.log("handleUpClick clicked");
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to Lower Case", "success");
   };
   const handleOnChnage = (event) => {
     console.log("handleonChange clicked");
@@ -22,11 +24,13 @@ export default function TextForm(props) {
     let text = document.getElementById("exampleFormControlTextarea1");
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.showAlert("Text Copied to Clipboard", "success");
   };
 
   const removeExtraSpaces = () => {
     let newtext = text.split(/[ ]+/);
     setText(newtext.join(" "));
+    props.showAlert("Extra Spaces Removed", "success");
   };
 
   return (
