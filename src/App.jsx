@@ -1,15 +1,16 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import Alert from "./components/Alert";
-// import About from "./components/About";
+import About from "./components/About";
 import "./App.css";
 
 function App() {
   const [mode, setMode] = useState("light");
   const [alert, setAlert] = useState(null);
+
   const showAlert = (message, type) => {
     setAlert({
       message: message,
@@ -33,7 +34,7 @@ function App() {
   };
 
   return (
-    <>
+    <Router>
       <Navbar
         title="TextUtils"
         aboutText="About"
@@ -42,9 +43,22 @@ function App() {
         toggleMode={toggleMode}
       />
       <Alert alert={alert} />
-      <TextForm title="Enter Text Here" mode={mode} showAlert={showAlert} />
-      {/* <About /> */}
-    </>
+      <div className="container my-3">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <TextForm
+                title="Enter Text Here"
+                mode={mode}
+                showAlert={showAlert}
+              />
+            }
+          />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
